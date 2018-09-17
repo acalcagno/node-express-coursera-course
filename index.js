@@ -4,16 +4,27 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     hostname = 'localhost',
     port = 3000,
-    app = express();
+    app = express(),
+    dishRouter = require('./routes/dishRouter'),
+    promoRouter = require('./routes/promoRouter'),
+    leaderRouter = require('./routes/leaderRouter'),
+    mongoose = require('mongoose'),
+    Dishes = require('./models/dishes'),
+    url = 'mongodb://localhost:27017/conFusion',
+    connect = mongoose.connect(url);
+
+connect.then((db) => {
+    console.log("Connected correctly to server");
+}, (err) => { console.log(err); });
+
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
-
-const dishRouter = require('./routes/dishRouter');
-
 app.use('/dishes', dishRouter);
+app.use('/promos', promoRouter);
+app.use('/leaders', leaderRouter);
 
 const server = http.createServer(app);
 

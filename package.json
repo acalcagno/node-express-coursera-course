@@ -14,8 +14,11 @@
   "author": "tom",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.5.2",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "mongoose": "^5.2.15",
+    "mongoose-currency": "^0.2.0",
     "morgan": "^1.9.0"
   }
 }
